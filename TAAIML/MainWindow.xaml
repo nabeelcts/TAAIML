@@ -1,0 +1,41 @@
+﻿<Window x:Class="TAAIML.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TAAIML"
+        mc:Ignorable="d"
+       Title="Task Automator" Height="350" Width="600"
+        WindowStartupLocation="CenterScreen"
+        Topmost="True">
+    <Grid Margin="20">
+        <!-- Normal View -->
+        <StackPanel x:Name="NormalViewPanel" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Task Automator" FontSize="24" FontWeight="Bold" TextAlignment="Center" />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="StartRecordingButton" Content="Start Recording" Width="120" Click="StartRecording_Click" />
+                <Button x:Name="StopRecordingButton" Content="Stop Recording" Width="120" Click="StopRecording_Click" />
+                <Button x:Name="ReplayButton" Content="Replay Task" Width="120" Click="Replay_Click" />
+            </StackPanel>
+
+            <TextBlock x:Name="RecordingIndicator" Text="Recording..." Foreground="Red" FontWeight="Bold" Visibility="Collapsed" Margin="0,10,0,0" TextAlignment="Center" />
+            <TextBlock x:Name="ReplayIndicator" Text="Replaying..." Foreground="Blue" FontWeight="Bold" Visibility="Collapsed" Margin="0,5,0,0" TextAlignment="Center" />
+            <Label x:Name="MousePositionLabel" Content="Mouse: X=0, Y=0" FontWeight="Bold" Margin="0,5,0,0" HorizontalAlignment="Center" />
+
+            <TextBlock Text="Recorded Events:" FontWeight="Bold" Margin="0,20,0,5"/>
+            <ListBox Name="EventListBox" Height="150" ItemsSource="{Binding}" DisplayMemberPath="Details" />
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Save Task" Click="SaveTask_Click" Margin="5"/>
+                <Button Content="Load Task" Click="LoadTask_Click" Margin="5"/>
+            </StackPanel>
+        </StackPanel>
+        <!-- Widget View -->
+        <Grid x:Name="WidgetPanel" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="100" Background="#FFF0F0F0" Margin="0">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock x:Name="WidgetIndicator" Text="" FontWeight="Bold" Foreground="Red" TextAlignment="Center" Margin="0,0,0,10" />
+                <Button x:Name="WidgetStopButton" Content="Stop" Width="120" Click="WidgetStopButton_Click" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
